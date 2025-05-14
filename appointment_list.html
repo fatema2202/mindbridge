@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Appointments</title>
+</head>
+<body>
+    <h1>Your Appointments</h1>
+
+    <a href="{% url 'book_appointment' %}">Book New Appointment</a>
+
+    <ul>
+        {% for appointment in appointments %}
+            <li>
+                <p><strong>Therapist:</strong> {{ appointment.therapist.name }}</p>
+                <p><strong>Appointment Time:</strong> {{ appointment.appointment_time }}</p>
+                <p><strong>Status:</strong> {{ appointment.status }}</p>
+                
+        
+                <a href="{% url 'edit_appointment' appointment.id %}">Edit</a> |
+                <a href="{% url 'cancel_appointment' appointment.id %}">Cancel</a>
+            </li>
+        {% empty %}
+            <p>You have no upcoming appointments.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

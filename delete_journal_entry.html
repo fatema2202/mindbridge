@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Journal Entry</title>
+</head>
+<body>
+    <header>
+        <h1>Are you sure you want to delete this journal entry?</h1>
+    </header>
+
+    <section>
+        <p><strong>Mood:</strong> {{ journal.mood }}</p>
+        <p><strong>Notes:</strong> {{ journal.notes }}</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, delete this entry</button>
+        </form>
+
+        <a href="{% url 'progress_journal' %}">Cancel</a>
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>

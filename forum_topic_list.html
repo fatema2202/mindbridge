@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum Topics</title>
+</head>
+<body>
+    <h1>Forum Topics</h1>
+    
+    <a href="{% url 'create_forum_topic' %}">Create New Topic</a>
+
+    <ul>
+        {% for topic in topics %}
+            <li>
+                <!-- Link to Topic Detail Page -->
+                <h3><a href="{% url 'forum_topic_detail' topic.id %}">{{ topic.title }}</a></h3>
+                <p>{{ topic.content }}</p>
+                <p>Created by: {{ topic.user.username }} on {{ topic.created_at }}</p>
+            </li>
+        {% empty %}
+            <p>No topics available.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

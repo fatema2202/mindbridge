@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Directory</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/appointments">Appointments</a>
+            <a href="/progress-journal">Progress Journal</a>
+            <a href="/community-forum">Community Forum</a>
+        </nav>
+        <h1>Meet Our Therapists</h1>
+    </header>
+
+     <section class="therapists">
+        <h2>Browse Our Therapists</h2>
+        <div class="therapist-cards">
+            {% for therapist in therapists %}
+                <div class="therapist-card">
+                    <h3>{{ therapist.name }}</h3>
+                    <p>Specialization: {{ therapist.specialization }}</p>
+                    <p>Rating: {{ therapist.rating }}</p>
+                    <p>Fee: Tk {{ therapist.fee }}</p>
+                    <p><strong>Bio:</strong> {{ therapist.bio }}</p>  
+                    <a href="{% url 'payment_form' therapist.id %}">Pay for Session</a>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>

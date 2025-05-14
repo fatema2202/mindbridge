@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Progress Journal</title>
+</head>
+<body>
+    <header>
+        <h1>Your Progress Journal</h1>
+        <nav>
+            <a href="{% url 'create_journal_entry' %}">Create New Journal Entry</a>
+        </nav>
+    </header>
+
+    <section class="journals">
+        <h2>My Journal Entries</h2>
+
+        {% for journal in journals %}
+            <div class="journal-card">
+                <p><strong>Mood:</strong> {{ journal.mood }}</p>
+                <p><strong>Notes:</strong> {{ journal.notes }}</p>
+                <p><strong>Created on:</strong> {{ journal.created_at }}</p>
+                <p><a href="{% url 'edit_journal_entry' journal.id %}">Edit</a> | 
+                <a href="{% url 'delete_journal_entry' journal.id %}">Delete</a></p>
+            </div>
+        {% empty %}
+            <p>You don't have any journal entries yet. <a href="{% url 'create_journal_entry' %}">Create one now</a></p>
+        {% endfor %}
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>

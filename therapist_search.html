@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search for Therapists</title>
+</head>
+<body>
+    <header>
+        <h1>Find a Therapist</h1>
+    </header>
+
+
+    <section>
+        <form method="get" action="{% url 'therapist_search' %}">
+            {{ form.as_p }}  
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+   
+    <section>
+        <h2>Therapists Found</h2>
+        
+        {% if therapists %}
+            <ul>
+                {% for therapist in therapists %}
+                    <li>
+                        <h3>{{ therapist.name }}</h3>
+                        <p><strong>Specialization:</strong> {{ therapist.specialization }}</p>
+                        <p>{{ therapist.bio }}</p>
+                        <a href="{% url 'therapist_detail' therapist.id %}">View Profile</a>  
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No therapists found. Please try a different search.</p>
+        {% endif %}
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>

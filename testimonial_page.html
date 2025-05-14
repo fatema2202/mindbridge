@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum</title>
+</head>
+<body>
+    <header>
+        <h1>Community Reviews</h1>
+        <nav>
+           <a href="{% url 'testimonial' %}"></a>
+        </nav>
+    </header>
+
+    <section class="reviews">
+        <h2>What Our Community Says</h2>
+        {% for testimonial in testimonials %}
+            <div class="testimonial-card">
+                <p><strong>{{ testimonial.user_name }}:</strong> {{ testimonial.review }}</p>
+                <p>Rating: {{ testimonial.rating }}/5</p>
+                <p>Submitted on: {{ testimonial.created_at }}</p>
+            </div>
+        {% empty %}
+            <p>No reviews yet. Be the first to share your thoughts!</p>
+        {% endfor %}
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>

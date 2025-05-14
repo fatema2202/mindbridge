@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ topic.title }}</title>
+</head>
+<body>
+    <header>
+        <h1>{{ topic.title }}</h1>
+        <p>{{ topic.content }}</p>
+        <p>Posted by: {{ topic.user.username }} on {{ topic.created_at }}</p>
+
+        {% if topic.user == request.user %}
+            <a href="{% url 'edit_forum_topic' topic.id %}">Edit Topic</a> |
+            <a href="{% url 'delete_forum_topic' topic.id %}">Delete Topic</a>
+        {% endif %}
+    </header>
+
+    <section>
+        <h2>Comments</h2>
+
+        {% for comment in comments %}
+            <div>
+                <p>{{ comment.content }}</p>
+                <p><small>By: {{ comment.user.username }} on {{ comment.created_at }}</small></p>
+                {% if comment.user == request.user %}
+                    <a href="{% url 'edit_comment' comment.id %}">Edit</a> |
+                    <a href="{% url 'delete_comment' comment.id %}">Delete</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h3>Post a Comment</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button type="submit">Post Comment</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>

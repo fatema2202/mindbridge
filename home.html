@@ -1,0 +1,56 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindBridge - Therapy for Better Mental Health</title>
+</head>
+<body>
+    <header>
+        <h1>Take the First Step Towards Better Mental Health Today</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="{% url 'create_therapist' %}">Therapist Profile</a>
+            <a href="{% url 'therapist_search' %}">Find Therapists</a>
+            <a href="{% url 'appointment_list' %}">Appointments</a>
+            <a href="/progress-journal">Progress Journal</a>
+            <a href="{% url 'forum_topic_list' %}">Community Forum</a>
+
+             {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}">
+                    <button>Logout</button>
+                </a>
+            {% else %}
+            
+                <a href="{% url 'login' %}">
+                    <button>Login</button>
+                </a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Browse Therapists</h2>
+        <p>Choose from our expert therapists to begin your journey towards better mental health.</p>
+        <a href="{% url 'therapist_directory' %}">Meet Our Therapists</a>
+    </section>
+
+    <section class="community-forum">
+        <h2>What Our Community Says</h2>
+        <div class="testimonials">
+            <p>"MindBridge has helped me feel supported every step of the way!" - Patient A</p>
+            <p>"The therapy sessions were a turning point in my life." - Patient B</p>
+            <a href="{% url 'testimonial' %}">
+            <button>See More Reviews</button>
+        </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>

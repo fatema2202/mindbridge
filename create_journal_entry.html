@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Journal Entry</title>
+</head>
+<body>
+    <header>
+        <h1>Create New Journal Entry</h1>
+    </header>
+
+    <section>
+        <form method="post">
+            {% csrf_token %}
+            <label for="mood">Mood:</label>
+            <input type="text" id="mood" name="mood" required><br><br>
+
+            <label for="notes">Notes:</label><br>
+            <textarea id="notes" name="notes" rows="4" cols="50" required></textarea><br><br>
+
+            <button type="submit">Save Entry</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>MindBridge | Connecting lives to affordable mental health support</p>
+    </footer>
+</body>
+</html>
